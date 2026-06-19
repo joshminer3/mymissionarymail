@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cream: #F6F5EF;
+  --color-mint: #DCE8D5;
+  --color-sage: #B3CAA8;
+  --color-sage-hover: #9DB892;
+  --color-tan: #E1D6C6;
+  --color-deep-sage: #647262;
+  --color-text-primary: #38402F;
+  --color-text-secondary: #647262;
+  /* Darkened from the brief's #9CA395 (~2.4:1 on cream, fails WCAG AA)
+     to clear the 3:1 UI-text threshold; still the lightest text tone. */
+  --color-text-muted: #848B7E;
+  --color-border: #DCD8CB;
+  --color-success-bg: #E3EFD9;
+  --color-success-text: #3D5A2A;
+  --color-warning-bg: #FBEFD9;
+  --color-warning-text: #8A6418;
+  --color-error-bg: #F8E2DE;
+  --color-error-text: #8C3D2F;
+  --color-disabled-bg: #EDEAE1;
+  --color-disabled-text: #B0AC9E;
+}
+
+body {
+  color: var(--color-text-primary);
+  background: var(--color-cream);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
