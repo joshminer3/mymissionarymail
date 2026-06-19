@@ -3,6 +3,7 @@ import { IconArrowLeft } from "@tabler/icons-react";
 import { createClient } from "@/lib/supabase/server";
 import { AppHeader } from "@/components/AppHeader";
 import { ExportButton } from "@/components/ExportButton";
+import { Footer } from "@/components/Footer";
 import { slugify } from "@/lib/slug";
 
 export default async function FormResponsesPage({
@@ -109,6 +110,8 @@ export default async function FormResponsesPage({
           <p className="text-sm text-text-secondary">No responses yet.</p>
         )}
       </div>
+
+      <Footer className="mt-10 border-t-[0.5px] border-border pt-6" />
     </main>
   );
 }

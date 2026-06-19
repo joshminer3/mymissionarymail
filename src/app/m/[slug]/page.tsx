@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { submitResponse } from "@/app/m/actions";
 import { AppHeader } from "@/components/AppHeader";
+import { Footer } from "@/components/Footer";
 
 export default async function PublicFormPage({
   params,
@@ -143,6 +144,8 @@ export default async function PublicFormPage({
           MyMissionaryMail.com
         </a>
       </p>
+
+      <Footer className="mt-4" />
     </main>
   );
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { IconPencil, IconQrcode, IconDownload } from "@tabler/icons-react";
 import { Logo } from "@/components/Logo";
+import { Footer } from "@/components/Footer";
 
 const steps = [
   {
@@ -30,8 +31,11 @@ export function MarketingPage() {
       <header className="border-b-[0.5px] border-border">
         <div className="mx-auto flex max-w-[1000px] items-center justify-between px-8 py-4">
           <Logo />
-          <div className="flex items-center gap-4">
-            <a href="/login" className="text-sm text-text-secondary">
+          <div className="flex flex-col-reverse items-end gap-1 min-[480px]:flex-row min-[480px]:items-center min-[480px]:gap-4">
+            <a
+              href="/login"
+              className="text-xs text-text-secondary min-[480px]:text-sm"
+            >
               Log in
             </a>
             <a
@@ -157,9 +161,7 @@ export function MarketingPage() {
         </a>
       </section>
 
-      <footer className="border-t-[0.5px] border-border py-6 text-center">
-        <p className="text-xs text-text-muted">© 2026 MyMissionaryMail</p>
-      </footer>
+      <Footer className="border-t-[0.5px] border-border py-6" />
     </div>
   );
 }

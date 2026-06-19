@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createForm } from "@/app/forms/actions";
 import { AppHeader } from "@/components/AppHeader";
 import { FileInput } from "@/components/FileInput";
+import { Footer } from "@/components/Footer";
 
 export default async function NewFormPage({
   searchParams,
@@ -99,6 +100,8 @@ export default async function NewFormPage({
           </p>
         )}
       </div>
+
+      <Footer className="mt-10 border-t-[0.5px] border-border pt-6" />
     </main>
   );
 }

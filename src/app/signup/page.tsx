@@ -1,6 +1,7 @@
 import { signup } from "@/app/auth/actions";
 import { SignupForm } from "@/components/SignupForm";
 import { Logo } from "@/components/Logo";
+import { Footer } from "@/components/Footer";
 
 export default function SignupPage({
   searchParams,
@@ -42,9 +43,7 @@ export default function SignupPage({
         </p>
       </div>
 
-      <p className="mt-6 text-center text-xs text-text-muted">
-        © 2026 MyMissionaryMail
-      </p>
+      <Footer className="mt-6" />
     </main>
   );
 }

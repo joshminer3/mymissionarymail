@@ -11,6 +11,7 @@ import { MarketingPage } from "@/components/MarketingPage";
 import { LogoMark } from "@/components/Logo";
 import { CreatedBanner } from "@/components/CreatedBanner";
 import { CopyLinkButton } from "@/components/CopyLinkButton";
+import { Footer } from "@/components/Footer";
 
 export default async function Home({
   searchParams,
@@ -127,6 +128,8 @@ export default async function Home({
             )}
           </div>
         </div>
+
+        <Footer className="mt-10 border-t-[0.5px] border-border pt-6" />
       </main>
     );
   }
