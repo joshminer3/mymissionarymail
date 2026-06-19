@@ -62,7 +62,6 @@ export function HeaderUserMenu({ email }: { email: string }) {
             <form action={logout}>
               <button
                 type="submit"
-                onClick={() => setOpen(false)}
                 className="w-full px-3 pt-2 text-left text-sm text-text-primary hover:bg-tan"
               >
                 Log out
