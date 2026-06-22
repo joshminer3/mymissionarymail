@@ -77,7 +77,7 @@ export default async function Home({
 
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-xs text-text-muted">
-                        /m/{form.slug}
+                        mymissionarymail.com/m/{form.slug}
                       </span>
                       <CopyLinkButton path={`/m/${form.slug}`} />
                     </div>
