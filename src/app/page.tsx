@@ -12,7 +12,6 @@ import { LogoMark } from "@/components/Logo";
 import { CreatedBanner } from "@/components/CreatedBanner";
 import { CopyLinkButton } from "@/components/CopyLinkButton";
 import { Footer } from "@/components/Footer";
-import { ShareToStoryButton } from "@/components/ShareToStoryButton";
 
 export default async function Home({
   searchParams,
@@ -60,7 +59,7 @@ export default async function Home({
               forms.map((form) => {
                 const count = form.responses?.[0]?.count ?? 0;
                 const actionClassName =
-                  "flex items-center justify-center gap-1 rounded border border-border bg-white px-2 py-1 text-xs text-text-primary hover:bg-tan";
+                  "flex items-center gap-1 rounded border border-border bg-white px-2 py-1 text-xs text-text-primary hover:bg-tan";
 
                 return (
                   <div
@@ -83,17 +82,14 @@ export default async function Home({
                       <CopyLinkButton path={`/m/${form.slug}`} />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 min-[480px]:flex">
-                      <a
-                        href={`/m/${form.slug}`}
-                        className={`${actionClassName} w-full min-[480px]:w-auto`}
-                      >
+                    <div className="flex gap-2">
+                      <a href={`/m/${form.slug}`} className={actionClassName}>
                         <IconExternalLink size={16} />
                         Public page
                       </a>
                       <a
                         href={`/forms/${form.id}/responses`}
-                        className={`${actionClassName} w-full min-[480px]:w-auto`}
+                        className={actionClassName}
                       >
                         <IconUsers size={16} />
                         Responses
@@ -101,12 +97,8 @@ export default async function Home({
                       <QrCode
                         path={`/m/${form.slug}`}
                         showPreview={false}
-                        linkClassName={`${actionClassName} w-full min-[480px]:w-auto`}
+                        linkClassName={actionClassName}
                         icon={<IconQrcode size={16} />}
-                      />
-                      <ShareToStoryButton
-                        path={`/m/${form.slug}`}
-                        className="min-[480px]:w-auto"
                       />
                     </div>
                   </div>
