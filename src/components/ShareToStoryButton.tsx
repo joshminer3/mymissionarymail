@@ -8,7 +8,15 @@ const gradientStyle = {
   background: "linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7)",
 };
 
-export function ShareToStoryButton({ path }: { path: string }) {
+const MOBILE_USER_AGENT = /Android|iPhone|iPod|Mobile/i;
+
+export function ShareToStoryButton({
+  path,
+  className = "",
+}: {
+  path: string;
+  className?: string;
+}) {
   const [supported, setSupported] = useState(false);
   const [open, setOpen] = useState(false);
   const [sharing, setSharing] = useState(false);
@@ -18,7 +26,8 @@ export function ShareToStoryButton({ path }: { path: string }) {
     try {
       const testFile = new File([""], "test.png", { type: "image/png" });
       setSupported(
-        typeof navigator.share === "function" &&
+        MOBILE_USER_AGENT.test(navigator.userAgent) &&
+          typeof navigator.share === "function" &&
           typeof navigator.canShare === "function" &&
           navigator.canShare({ files: [testFile] })
       );
@@ -73,12 +82,12 @@ export function ShareToStoryButton({ path }: { path: string }) {
   };
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className={`relative ${className}`}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         style={gradientStyle}
-        className="flex items-center gap-1 rounded px-2 py-1 text-xs text-white"
+        className={`flex w-full items-center justify-center gap-1 rounded px-2 py-1 text-xs text-white ${className}`}
       >
         <IconCamera size={16} />
         Share to Story

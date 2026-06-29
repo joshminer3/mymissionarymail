@@ -60,7 +60,7 @@ export default async function Home({
               forms.map((form) => {
                 const count = form.responses?.[0]?.count ?? 0;
                 const actionClassName =
-                  "flex items-center gap-1 rounded border border-border bg-white px-2 py-1 text-xs text-text-primary hover:bg-tan";
+                  "flex items-center justify-center gap-1 rounded border border-border bg-white px-2 py-1 text-xs text-text-primary hover:bg-tan";
 
                 return (
                   <div
@@ -83,14 +83,17 @@ export default async function Home({
                       <CopyLinkButton path={`/m/${form.slug}`} />
                     </div>
 
-                    <div className="flex gap-2">
-                      <a href={`/m/${form.slug}`} className={actionClassName}>
+                    <div className="grid grid-cols-2 gap-2 min-[480px]:flex">
+                      <a
+                        href={`/m/${form.slug}`}
+                        className={`${actionClassName} w-full min-[480px]:w-auto`}
+                      >
                         <IconExternalLink size={16} />
                         Public page
                       </a>
                       <a
                         href={`/forms/${form.id}/responses`}
-                        className={actionClassName}
+                        className={`${actionClassName} w-full min-[480px]:w-auto`}
                       >
                         <IconUsers size={16} />
                         Responses
@@ -98,10 +101,13 @@ export default async function Home({
                       <QrCode
                         path={`/m/${form.slug}`}
                         showPreview={false}
-                        linkClassName={actionClassName}
+                        linkClassName={`${actionClassName} w-full min-[480px]:w-auto`}
                         icon={<IconQrcode size={16} />}
                       />
-                      <ShareToStoryButton path={`/m/${form.slug}`} />
+                      <ShareToStoryButton
+                        path={`/m/${form.slug}`}
+                        className="min-[480px]:w-auto"
+                      />
                     </div>
                   </div>
                 );
