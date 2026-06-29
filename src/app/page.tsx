@@ -12,6 +12,7 @@ import { LogoMark } from "@/components/Logo";
 import { CreatedBanner } from "@/components/CreatedBanner";
 import { CopyLinkButton } from "@/components/CopyLinkButton";
 import { Footer } from "@/components/Footer";
+import { ShareToStoryButton } from "@/components/ShareToStoryButton";
 
 export default async function Home({
   searchParams,
@@ -100,6 +101,7 @@ export default async function Home({
                         linkClassName={actionClassName}
                         icon={<IconQrcode size={16} />}
                       />
+                      <ShareToStoryButton path={`/m/${form.slug}`} />
                     </div>
                   </div>
                 );
