@@ -66,6 +66,15 @@ export function MarketingPage() {
             >
               Get started — it&apos;s free
             </a>
+            <a
+              href="https://mymissionarymail.com/m/elder-smith-6ba37e"
+              className="mt-2.5 w-fit rounded-md border border-border bg-transparent px-[22px] py-3 text-[15px] font-medium text-text-secondary hover:bg-tan"
+            >
+              See a live example →
+            </a>
+            <p className="mt-2 text-xs text-text-muted">
+              No account needed to look around.
+            </p>
           </div>
 
           <div className="flex items-center justify-center rounded-[20px] bg-disabled-bg p-7">
