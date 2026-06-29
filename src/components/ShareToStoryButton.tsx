@@ -61,7 +61,7 @@ export function ShareToStoryButton({
   const handleShare = async () => {
     setSharing(true);
     try {
-      const blob = await generateStoryImage();
+      const blob = generateStoryImage();
 
       if (usesDirectIOSPath && META_APP_ID) {
         try {

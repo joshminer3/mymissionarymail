@@ -22,18 +22,36 @@ function roundedRectPath(
   ctx.closePath();
 }
 
+function dataUrlToBlob(dataUrl: string): Blob {
+  const [header, base64] = dataUrl.split(",");
+  const mimeMatch = header.match(/data:(.*);base64/);
+  const mime = mimeMatch ? mimeMatch[1] : "image/png";
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return new Blob([bytes], { type: mime });
+}
+
 // Renders a plain gradient background with the envelope logo mark for an
 // Instagram Story draft. No caption text is baked in — Instagram doesn't let
 // shared images carry an editable text layer, so the user adds their own
 // caption inside Instagram after the share sheet opens.
-export function generateStoryImage(): Promise<Blob> {
+//
+// This is intentionally synchronous (canvas.toDataURL, not the async
+// canvas.toBlob callback): Safari only allows navigator.clipboard.write()
+// while still inside the click's "user activation" window, and any task
+// boundary before that call (like waiting on toBlob's callback) causes it
+// to silently fail with NotAllowedError.
+export function generateStoryImage(): Blob {
   const canvas = document.createElement("canvas");
   canvas.width = WIDTH;
   canvas.height = HEIGHT;
   const ctx = canvas.getContext("2d");
 
   if (!ctx) {
-    return Promise.reject(new Error("Canvas not supported"));
+    throw new Error("Canvas not supported");
   }
 
   const gradient = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
@@ -71,13 +89,5 @@ export function generateStoryImage(): Promise<Blob> {
   ctx.lineTo(offsetX + 28 * scale, offsetY + 9 * scale);
   ctx.stroke();
 
-  return new Promise((resolve, reject) => {
-    canvas.toBlob((blob) => {
-      if (blob) {
-        resolve(blob);
-      } else {
-        reject(new Error("Could not generate Story image"));
-      }
-    }, "image/png");
-  });
+  return dataUrlToBlob(canvas.toDataURL("image/png"));
 }
