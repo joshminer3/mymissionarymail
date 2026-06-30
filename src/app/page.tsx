@@ -11,6 +11,7 @@ import { MarketingPage } from "@/components/MarketingPage";
 import { LogoMark } from "@/components/Logo";
 import { CreatedBanner } from "@/components/CreatedBanner";
 import { CopyLinkButton } from "@/components/CopyLinkButton";
+import { ShareToInstagramButton } from "@/components/ShareToInstagramButton";
 import { Footer } from "@/components/Footer";
 
 export default async function Home({
@@ -82,7 +83,7 @@ export default async function Home({
                       <CopyLinkButton path={`/m/${form.slug}`} />
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="grid grid-cols-2 gap-2 min-[480px]:flex">
                       <a href={`/m/${form.slug}`} className={actionClassName}>
                         <IconExternalLink size={16} />
                         Public page
@@ -99,6 +100,10 @@ export default async function Home({
                         showPreview={false}
                         linkClassName={actionClassName}
                         icon={<IconQrcode size={16} />}
+                      />
+                      <ShareToInstagramButton
+                        slug={form.slug}
+                        className={actionClassName}
                       />
                     </div>
                   </div>
