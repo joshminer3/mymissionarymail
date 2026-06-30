@@ -22,6 +22,20 @@ export default async function PublicFormPage({
     notFound();
   }
 
+  // RLS on `forms` only returns a row to the form's own owner, so this
+  // doubles as an ownership check without ever exposing user_id publicly.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { data: ownedForm } = user
+    ? await supabase
+        .from("forms")
+        .select("id")
+        .eq("slug", params.slug)
+        .maybeSingle()
+    : { data: null };
+  const isOwner = Boolean(ownedForm);
+
   const fieldClassName =
     "rounded-md border-[0.5px] border-border bg-white px-3 py-2.5 text-sm text-text-primary";
 
@@ -135,6 +149,23 @@ export default async function PublicFormPage({
               </p>
             )}
           </form>
+        </div>
+      )}
+
+      {!isOwner && (
+        <div className="mt-5 rounded-xl border-[0.5px] border-border bg-white p-5 text-center">
+          <h2 className="mb-1.5 text-base font-medium text-text-primary">
+            Want one of these for your missionary?
+          </h2>
+          <p className="mb-3.5 text-[13px] text-text-secondary">
+            Create your own free sign-up page in under two minutes.
+          </p>
+          <a
+            href="/signup"
+            className="rounded-md bg-sage px-[18px] py-2.5 text-sm font-medium text-text-primary hover:bg-sage-hover hover:text-text-primary active:bg-deep-sage active:text-cream"
+          >
+            Create my free list →
+          </a>
         </div>
       )}
 
