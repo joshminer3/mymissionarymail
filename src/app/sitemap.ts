@@ -16,5 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/signup`,
       priority: 0.5,
     },
+    {
+      url: `${BASE_URL}/blog/missionary-email-list`,
+      priority: 0.7,
+    },
   ];
 }
