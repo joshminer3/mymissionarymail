@@ -1,11 +1,11 @@
-import { login } from "@/app/auth/actions";
+import { resetPassword } from "@/app/auth/actions";
 import { Logo } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
 
-export default function LoginPage({
+export default function ResetPasswordPage({
   searchParams,
 }: {
-  searchParams: { error?: string; message?: string };
+  searchParams: { error?: string };
 }) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-cream py-10">
@@ -18,25 +18,25 @@ export default function LoginPage({
 
       <div className="w-full max-w-[400px] rounded-xl border-[0.5px] border-border bg-white p-8">
         <h1 className="mb-5 text-lg font-medium text-text-primary">
-          Log in
+          Choose a new password
         </h1>
 
-        <form action={login} className="mb-4 flex flex-col gap-4">
+        <form action={resetPassword} className="flex flex-col gap-4">
           <label className="flex flex-col gap-1.5 text-[13px] font-medium text-text-primary">
-            Email
+            New password
             <input
-              name="email"
-              type="email"
+              name="password"
+              type="password"
               required
-              placeholder="your@email.com"
+              placeholder="••••••••"
               className="rounded-md border border-border bg-white px-3 py-2.5 text-sm text-text-primary"
             />
           </label>
 
           <label className="flex flex-col gap-1.5 text-[13px] font-medium text-text-primary">
-            Password
+            Confirm new password
             <input
-              name="password"
+              name="confirmPassword"
               type="password"
               required
               placeholder="••••••••"
@@ -48,14 +48,8 @@ export default function LoginPage({
             type="submit"
             className="w-full rounded-md bg-sage py-3 text-[15px] font-medium text-text-primary hover:bg-sage-hover hover:text-text-primary active:bg-deep-sage active:text-cream"
           >
-            Log in
+            Update password
           </button>
-
-          {searchParams.message && (
-            <p className="rounded bg-success-bg px-3 py-2 text-sm text-success-text">
-              {searchParams.message}
-            </p>
-          )}
 
           {searchParams.error && (
             <p className="rounded bg-error-bg px-3 py-2 text-sm text-error-text">
@@ -63,22 +57,6 @@ export default function LoginPage({
             </p>
           )}
         </form>
-
-        <p className="text-center text-[13px] text-text-muted">
-          Need an account?{" "}
-          <a href="/signup" className="font-medium text-deep-sage no-underline">
-            Sign up
-          </a>
-        </p>
-        <p className="mt-2 text-center text-[13px] text-text-muted">
-          Forgot your password?{" "}
-          <a
-            href="/forgot-password"
-            className="font-medium text-deep-sage no-underline"
-          >
-            Reset it here
-          </a>
-        </p>
       </div>
 
       <Footer className="mt-6" />
